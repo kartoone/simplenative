@@ -52,6 +52,33 @@ function AboutScreen() {
   );
 }
 
+const ICE_CREAM_FLAVORS = ['Vanilla', 'Chocolate', 'Strawberry', 'Mint Chip'];
+const HOT_COFFEES = ['Espresso', 'Americano', 'Latte', 'Cappuccino'];
+
+function IceCreamScreen() {
+  return (
+    <View style={styles.screen}>
+      <Text style={styles.title}>🍦 Ice Cream</Text>
+      <Text style={styles.body}>Pick a flavor:</Text>
+      {ICE_CREAM_FLAVORS.map((flavor) => (
+        <Text key={flavor} style={styles.item}>{flavor}</Text>
+      ))}
+    </View>
+  );
+}
+
+function HotCoffeeScreen() {
+  return (
+    <View style={styles.screen}>
+      <Text style={styles.title}>☕ Hot Coffee</Text>
+      <Text style={styles.body}>Pick a drink:</Text>
+      {HOT_COFFEES.map((coffee) => (
+        <Text key={coffee} style={styles.item}>{coffee}</Text>
+      ))}
+    </View>
+  );
+}
+
 function HomeStack() {
   return (
     <Stack.Navigator>
@@ -70,6 +97,22 @@ function SettingsStack() {
   );
 }
 
+function IceCreamStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="IceCream" component={IceCreamScreen} options={{ title: 'Ice Cream' }} />
+    </Stack.Navigator>
+  );
+}
+
+function HotCoffeeStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="HotCoffee" component={HotCoffeeScreen} options={{ title: 'Hot Coffee' }} />
+    </Stack.Navigator>
+  );
+}
+
 export default function App() {
   return (
     <>
@@ -77,6 +120,8 @@ export default function App() {
         <Tab.Navigator>
           <Tab.Screen name="HomeTab" component={HomeStack} />
           <Tab.Screen name="SettingsTab" component={SettingsStack} />
+          <Tab.Screen name="IceCreamTab" component={IceCreamStack} />
+          <Tab.Screen name="HotCoffeeTab" component={HotCoffeeStack} />
         </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
@@ -99,5 +144,9 @@ const styles = StyleSheet.create({
   body: {
     fontSize: 16,
     marginBottom: 16,
+  },
+  item: {
+    fontSize: 18,
+    marginBottom: 6,
   },
 });
